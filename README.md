@@ -1,2 +1,2 @@
-# ozgurbot-twitter
-ozgurbot twitter
+# tweetbot
+tweetbot is a bot to tweet live scores.
