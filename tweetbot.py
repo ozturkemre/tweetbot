@@ -37,41 +37,47 @@ print(old_scores)
 sleep(5)
 
 while True:
-    new_scores = do_the_job()
-    finished = []
-    for i in old_scores:
-        if i in new_scores:
-            # if match live
-            if old_scores[i]["score"] != new_scores[i]["score"] or (new_scores[i]["minute"] == "HT" and old_scores[i]["minute"] != "HT"):
-                if "color:red" in new_scores[i]["score"]:
-                    pass
-                else:
-                    # if scores or half time
-                    score_print(new_scores[i])
-                    pass
+    try:
+        new_scores = do_the_job()
+        finished = []
+        for i in old_scores:
+            if i in new_scores:
+                # if match live
+                if old_scores[i]["score"] != new_scores[i]["score"] or (new_scores[i]["minute"] == "HT" and old_scores[i]["minute"] != "HT"):
+                    if "color:red" in new_scores[i]["score"]:
+                        pass
+                    else:
+                        # if scores or half time
+                        score_print(new_scores[i])
+                        pass
 
-            old_scores[i] = new_scores[i]
+                old_scores[i] = new_scores[i]
 
-        else:
+            else:
 
-            # if match finished
-            old_scores[i]["minute"] = "FT"
-            score_print(old_scores[i])
-            finished.append(i)
+                # if match finished
+                old_scores[i]["minute"] = "FT"
+                score_print(old_scores[i])
+                finished.append(i)
 
-    for i in new_scores:
-        if i in old_scores:
-            pass
-        else:
-            # if new match starts
-            old_scores[i] = new_scores[i]
-            score_print(old_scores[i])
+        for i in new_scores:
+            if i in old_scores:
+                pass
+            else:
+                # if new match starts
+                old_scores[i] = new_scores[i]
+                # score_print(old_scores[i])
 
-    for i in finished:
-        # delete finished match
-        del old_scores[i]
+        for i in finished:
+            # delete finished match
+            del old_scores[i]
 
-    sleep(20)
+        sleep(20)
+    except Exception as e:
+        f=open("log.txt", "w")
+        f.write("An exceptional thing happened ",e)
+        f.close()
+
 
 
 # tweet_from_app()
