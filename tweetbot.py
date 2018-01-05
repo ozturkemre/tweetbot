@@ -21,6 +21,7 @@ def score_print(publish):
 
     try:
         tweet_from_app(api, ready_tweet)
+        print(ready_tweet)
 
     except:
         pass
