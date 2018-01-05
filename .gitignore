@@ -105,4 +105,4 @@ ENV/
 .mypy_cache/
 
 # credentials for api keys and page link
-#credentials.py
+credentials.py
